@@ -15,9 +15,9 @@ Including another URLconf
 """
 
 from django.urls import path
-from api import views
+from api.views import studentInfo
 
 urlpatterns = [
-
+    path('student/', studentInfo)
 
 ]
