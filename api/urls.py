@@ -19,6 +19,6 @@ from api.views import *
 
 urlpatterns = [
     path('students/', studentInfo),
-    path('student/<int:pk>/', studentDetals)
+    path('info/<int:pk>/', Info)
 
 ]
