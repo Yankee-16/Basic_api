@@ -27,10 +27,12 @@ class Info(APIView):
         try:
             return student.objects.get(id=id)
         except student.DoesNotExist:
-            return Response(status.HTTP_404_NOT_FOUND)
+            return None
 
     def get(self, request, id):
         students = self.get_object(id)
+        if students is None:
+            return Response(status.HTTP_404_NOT_FOUND)
         serializer = studentSerializer(students)
         return Response(serializer.data)
 
@@ -45,7 +47,7 @@ class Info(APIView):
     def delete(self, request, id):
         students = self.get_object(id)
         students.delete()
-        return Response(status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 #
 # @api_view(['GET', "POST"])
